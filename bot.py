@@ -1,18 +1,17 @@
-import telebot
-import time
+import telegram
+from telegram.ext import Updater
+from telegram.ext import CommandHandler
 
-bot_token = 'Telegram API KEY'
-bot = telebot.TeleBot(token=bot_token)
+telegram_token = 'Telegram API Key'
 
-
-@bot.message_handler(commands=['start'])
-def send_welcome(message):
-    bot.reply_to(message, "Hello, Welcome!")
+updater = Updater(token=telegram_token, use_context=True)
+dispatcher = updater.dispatcher
 
 
-@bot.message_handler(commands=['help'])
-def send_welcome(message):
-    bot.reply_to(message, "To use this bot, send a crypto ticker")
+def start(update, context):
+    chat_id = update.effective_chat.id
+    context.bot.send_message(chat_id=chat_id, text="Hello Boss, Welcome!")
 
 
-bot.polling()
+dispatcher.add_handler(CommandHandler("start", start))
+updater.start_polling()
