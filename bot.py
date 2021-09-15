@@ -1,7 +1,7 @@
 import telebot
 import time
 
-bot_token = 'API KEY'
+bot_token = 'Telegram API KEY'
 bot = telebot.TeleBot(token=bot_token)
 
 
@@ -12,7 +12,7 @@ def send_welcome(message):
 
 @bot.message_handler(commands=['help'])
 def send_welcome(message):
-    bot.reply_to(message, "To use this bot, send a username")
+    bot.reply_to(message, "To use this bot, send a crypto ticker")
 
 
 bot.polling()
